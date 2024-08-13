@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePhotoLikes } from "@/hooks/usePhotoLikes";
-// import PhotoDropdownMenu from "@/features/my-photos/components/PhotoDropdownMenu";
+import PhotoDropdownMenu from "@/features/my-photos/components/PhotoDropdownMenu";
 import ImageModal from "./ImageModal";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { MapPinIcon } from "@heroicons/react/20/solid";
@@ -47,6 +47,15 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
               <CardDescription>{photo.user_name}</CardDescription>
             </div>
           )}
+
+          <div className="flex items-center">
+            <CardTitle>{photo.title}</CardTitle>
+            {onDelete && (
+              <div className="ml-auto">
+                <PhotoDropdownMenu photo={photo} onDelete={onDelete} />
+              </div>
+            )}
+          </div>
         </CardHeader>
 
         <CardContent>
