@@ -13,7 +13,7 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons'
 
 const Footer = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-teal-800 flex justify-around items-center py-4">
+    <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4">
       <ul className="flex justify-around w-full">
         <li className="flex flex-col items-center">
           <Button variant="link">
