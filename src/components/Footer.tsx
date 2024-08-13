@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import { faCrown } from '@fortawesome/free-solid-svg-icons'
+
+
+
+
 
 const Footer = () => {
   return (
@@ -8,28 +18,28 @@ const Footer = () => {
         <li className="flex flex-col items-center">
           <Button variant="link">
             <Link href="/home">
-              <img src="/images/home_icon.png" alt="ホーム" className="w-6 h-6" />
+            <FontAwesomeIcon icon={faHouse} className="text-white text-3xl" />
             </Link>
           </Button>
         </li>
         <li className="flex flex-col items-center">
           <Button variant="link">
             <Link href="/post">
-              <img src="/images/post_icon.png" alt="投稿" className="w-6 h-6" />
+            <FontAwesomeIcon icon={faCirclePlus} className="text-white text-3xl"/>
             </Link>
           </Button>
         </li>
         <li className="flex flex-col items-center">
           <Button variant="link">
             <Link href="/ranking">
-              <img src="/images/ranking_icon.png" alt="ランキング" className="w-6 h-6" />
+            <FontAwesomeIcon icon={faCrown} className="text-white text-3xl"/>
             </Link>
           </Button>
         </li>
         <li className="flex flex-col items-center">
           <Button variant="link">
             <Link href="/my-photos">
-              <img src="/images/my_photos_icon.png" alt="マイページ" className="w-6 h-6" />
+              <FontAwesomeIcon icon={faUser} className="text-white text-3xl"/>
             </Link>
           </Button>
         </li>
