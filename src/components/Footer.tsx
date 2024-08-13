@@ -7,10 +7,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import { faCrown } from '@fortawesome/free-solid-svg-icons'
 
-
-
-
-
 const Footer = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4">
