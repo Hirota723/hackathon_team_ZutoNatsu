@@ -34,38 +34,47 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
 
           {!onDelete && (
             <div className="flex items-center gap-4">
+              {/* 画像 */}
               <Avatar>
                 <AvatarImage src={photo.user_avatar} alt={photo.user_name} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
+              {/* ユーザー名 */}
               <CardDescription>{photo.user_name}</CardDescription>
             </div>
           )}
-
-          <div className="flex items-center">
-            <CardTitle>{photo.title}</CardTitle>
-          </div>
         </CardHeader>
 
         <CardContent>
-          <Image
-            src={
-              photo.photo_url ||
-              "https://cdn2.aprico-media.com/production/imgs/images/000/047/172/original.jpg?1580205234"
-            }
-            alt={photo.title}
-            width={350}
-            height={350}
-            onClick={handleImageClick}
-            className="cursor-pointer"
-            priority
-          />
-          <div className="flex">
+          <div className="flex items-center">
+            {/* 写真 */}
+            <Image
+              src={
+                photo.photo_url ||
+                "https://cdn2.aprico-media.com/production/imgs/images/000/047/172/original.jpg?1580205234"
+              }
+              alt={photo.title}
+              width={350}
+              height={350}
+              onClick={handleImageClick}
+              className="cursor-pointer"
+              priority
+            />
+
+            {/* タイトル */}
+            <div className="flex items-center">
+              <CardTitle >{photo.title}</CardTitle>
+            </div>
+          </div>
+
+          {/* 場所 */}
+          <div className="flex bg-[#E3D8C6]">
             <MapPinIcon className="w-6 h-6 mr-1 text-blue-500" />
             {photo.location}
           </div>
         </CardContent>
 
+        {/* 日付 */}
         <CardFooter className="flex justify-between">
           <div className="text-gray-400">{photo.created_at}</div>
         </CardFooter>

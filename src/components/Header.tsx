@@ -3,8 +3,8 @@ import { Button } from "./ui/button";
 
 export default function Header() {
   return (
-    <header className="bg-[#015873] text-white font-bold">
-      <div className="container mx-auto flex justify-between items-center p-4">
+    <header className="left-0 w-full bg-blue flex justify-around items-center py-4 z-10">
+      <div className="flex justify-around w-full">
         <Button variant="link">
           <Link href={"/home"}>プログラムのたいとる</Link>
         </Button>

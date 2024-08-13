@@ -1,5 +1,6 @@
 import PhotoCard from "@/components/PhotoCard";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import Photos from "@/entities/photos";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 const PhotoFeedPresenter: React.FC<Props> = ({ photos }) => {
   return (
     <div className="flex flex-col items-center pb-20">
-      {/* <Header /> */}
+      <Header />
 
       {photos
         .slice()
