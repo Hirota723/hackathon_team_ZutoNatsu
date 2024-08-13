@@ -5,6 +5,7 @@ const PhotoFeedPresenter = () => {
   return (
     <div>
       <p>PhotoFeedPresenter</p>
+      
       <Footer />
     </div>
   );
