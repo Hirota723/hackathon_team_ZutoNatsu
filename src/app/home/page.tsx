@@ -1,9 +1,7 @@
-import React from 'react'
+import PhotoFeedContainer from "@/features/photoFeed/PhotoFeedContainer";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+const LogInPage = () => {
+  return <PhotoFeedContainer />;
+};
 
-export default page
+export default LogInPage;
