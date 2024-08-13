@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "cdn2.aprico-media.com",
-      "hjjaysreshjaxlzyhubm.supabase.co",
+      "ikhdrzpwonatfctswqps.supabase.co",
       "www.nta.co.jp",
     ],
   },
