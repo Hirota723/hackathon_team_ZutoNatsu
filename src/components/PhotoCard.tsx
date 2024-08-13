@@ -9,7 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { usePhotoLikes } from "@/hooks/usePhotoLikes";
+// import PhotoDropdownMenu from "@/features/my-photos/components/PhotoDropdownMenu";
 import ImageModal from "./ImageModal";
+import { HeartIcon } from "@heroicons/react/24/solid";
 import { MapPinIcon } from "@heroicons/react/20/solid";
 import Photos from "@/entities/photos";
 
@@ -21,6 +24,7 @@ interface Props {
 
 const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { likes, isLiked, handleLike } = usePhotoLikes(photo);
 
   const handleImageClick = () => {
     setIsModalOpen(true);
@@ -63,7 +67,7 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
 
             {/* タイトル */}
             <div className="flex items-center">
-              <CardTitle >{photo.title}</CardTitle>
+              <CardTitle>{photo.title}</CardTitle>
             </div>
           </div>
 
@@ -71,6 +75,17 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
           <div className="flex bg-[#E3D8C6]">
             <MapPinIcon className="w-6 h-6 mr-1 text-blue-500" />
             {photo.location}
+          </div>
+
+          {/* いいね */}
+          <div className="flex pl-64 gap-2">
+            <HeartIcon
+              className={`w-6 h-6 ${
+                isLiked ? "text-red-500 " : "text-gray-400"
+              }`}
+              onClick={handleLike}
+            />
+            <p>{likes}</p>
           </div>
         </CardContent>
 
