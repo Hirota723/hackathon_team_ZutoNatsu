@@ -42,7 +42,7 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
   const [value, setValue] = useState("");
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center pb-20">
       <Header />
 
       <p className="text-lg font-bold p-2">写真の投稿</p>
@@ -58,7 +58,10 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
             render={({ field }) => (
               <FormItem>
                 <div className="bg-[#E3D8C6] p-2 rounded-lg">
-                  <FormLabel className="text-lg font-bold">写真</FormLabel>
+                  <div className="flex">
+                    <FormLabel className="text-lg font-bold">写真</FormLabel>
+                    <FormMessage className="ml-auto" />
+                  </div>
                   <FormControl>
                     <Input
                       placeholder="写真"
@@ -75,31 +78,88 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
                       }}
                     />
                   </FormControl>
-                  <FormMessage />
                 </div>
               </FormItem>
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <div className="bg-[#E3D8C6] p-2 rounded-lg">
-                  <FormLabel className="text-lg font-bold">タイトル</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="タイトル"
-                      {...field}
-                      className="text-lg font-bold"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
+          <div className="bg-[#E3D8C6] rounded-lg">
+            <FormField
+              control={form.control}
+              name="title5"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="bg-[#E3D8C6] p-2 rounded-lg">
+                    <div className="flex flex-col">
+                      <FormLabel className="text-lg font-bold">俳句</FormLabel>
+                      <div className="flex">
+                        <FormLabel className="text-base font-semibold">
+                          一句 (5音)
+                        </FormLabel>
+                        <FormMessage className="ml-auto" />
+                      </div>
+                    </div>
+
+                    <FormControl>
+                      <Input
+                        placeholder="5音の部分を入力"
+                        {...field}
+                        className="text-lg font-medium"
+                      />
+                    </FormControl>
+                  </div>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="title7"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="bg-[#E3D8C6] p-2 rounded-lg">
+                    <div className="flex">
+                      <FormLabel className="text-base font-semibold">
+                        二句 (7音)
+                      </FormLabel>
+                      <FormMessage className="ml-auto" />
+                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="7音の部分を入力"
+                        {...field}
+                        className="text-lg font-medium"
+                      />
+                    </FormControl>
+                  </div>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="title5_2"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="bg-[#E3D8C6] p-2 rounded-lg">
+                    <div className="flex">
+                      <FormLabel className="text-base font-semibold">
+                        三句 (5音)
+                      </FormLabel>
+                      <FormMessage className="ml-auto" />
+                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="最後の5音の部分を入力"
+                        {...field}
+                        className="text-lg font-medium"
+                      />
+                    </FormControl>
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
@@ -107,14 +167,17 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <div className="bg-[#E3D8C6] p-2 rounded-lg">
-                  <FormLabel className="text-lg font-bold">場所</FormLabel>
+                  <div className="flex">
+                    <FormLabel className="text-lg font-bold">場所</FormLabel>
+                    <FormMessage className="ml-auto" />
+                  </div>
                   <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
-                        className="w-full justify-between text-lg font-bold"
+                        className="w-full justify-between text-lg font-medium"
                       >
                         {value
                           ? LOCATIONS.find(
@@ -160,7 +223,6 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <FormMessage />
               </FormItem>
             )}
           />
