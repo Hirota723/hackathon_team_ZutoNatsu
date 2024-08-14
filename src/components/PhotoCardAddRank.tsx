@@ -62,7 +62,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
           className="w-full max-w-[600px] my-2"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger className=" flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full p-2">
+            <AccordionTrigger className=" flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full mx-4">
               <div className="flex">
                 <p className="text-lg font-bold">{rank}</p>
                 <p className="text-lg font-bold">位</p>
@@ -84,7 +84,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
         </Accordion>
       ) : (
         <div className="my-2 w-full max-w-[600px]">
-          <div className="flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full p-2">
+          <div className="flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full mx-4">
             <div className="flex">
               <p className="text-lg font-bold" style={getRankStyle(rank)}>
                 {rank}
