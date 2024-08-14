@@ -50,7 +50,7 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-4/5 mx-auto"
+          className="space-y-8  w-full max-w-[600px]"
         >
           <FormField
             control={form.control}
