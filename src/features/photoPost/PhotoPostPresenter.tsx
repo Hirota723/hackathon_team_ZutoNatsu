@@ -2,6 +2,7 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import LoadSpinner from "@/components/LoadSpinner";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -241,13 +242,15 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
           />
 
           <div className="flex justify-center">
-            <Button
+            <button
               type="submit"
-              className="w-4/5 h-12 text-lg bg-red"
-              disabled={isSubmitting} // 追加: ボタンの無効化
+              className={`w-4/5 h-12 text-lg text-white flex justify-center items-center rounded-full ${
+                isSubmitting ? "bg-red-700" : "bg-red-500"
+              }`}
+              disabled={isSubmitting} // ボタンの無効化
             >
-              {isSubmitting ? "投稿中..." : "投稿"}
-            </Button>
+              {isSubmitting ? <LoadSpinner /> : "投稿"}
+            </button>
           </div>
         </form>
       </Form>
