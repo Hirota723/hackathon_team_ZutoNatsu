@@ -47,7 +47,10 @@ const PhotoPostContainer = () => {
   });
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
-    const { image, title, location } = value;
+    const { title5, title7, title5_2, location, image } = value;
+
+    // 5-7-5形式のタイトルを結合
+    const title = `${title5}\n${title7}\n${title5_2}`;
 
     const filePath = `photos/${uuidv4()}`;
 
