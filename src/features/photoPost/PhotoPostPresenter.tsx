@@ -30,7 +30,6 @@ import {
 } from "@/components/ui/popover";
 import { useState } from "react";
 import { LOCATIONS } from "@/constants/locations";
-// import Header from "@/components/Header";
 
 interface PhotoPostContainerProps {
   form: any;
@@ -40,6 +39,20 @@ interface PhotoPostContainerProps {
 const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // 追加: 投稿ボタンが押されたかどうかの状態を管理
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (isSubmitting) return; // 連打を防止
+
+    setIsSubmitting(true);
+    try {
+      await form.handleSubmit(onSubmit)(); // 投稿処理を実行
+    } finally {
+      setIsSubmitting(false); // 処理が完了したら再度ボタンを押せるようにする
+    }
+  };
 
   return (
     <div className="flex flex-col items-center pb-20">
@@ -49,7 +62,7 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
 
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={handleSubmit} // 修正: handleSubmitを使用
           className="space-y-8  w-full max-w-[600px]"
         >
           <FormField
@@ -228,8 +241,12 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
           />
 
           <div className="flex justify-center">
-            <Button type="submit" className="w-4/5 h-12 text-lg bg-red">
-              投稿
+            <Button
+              type="submit"
+              className="w-4/5 h-12 text-lg bg-red"
+              disabled={isSubmitting} // 追加: ボタンの無効化
+            >
+              {isSubmitting ? "投稿中..." : "投稿"}
             </Button>
           </div>
         </form>
