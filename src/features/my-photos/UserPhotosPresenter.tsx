@@ -18,16 +18,18 @@ const UserPhotosPresenter: React.FC<UserPhotosPresenterProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="flex flex-col items-center pb-20 bg-white">
+    <div className="flex flex-col items-center pb-20">
       <Header />
 
-      <div className="flex items-center space-x-4 p-4 bg-white">
+      <div className="flex items-center space-x-4 p-4 w-full w-max-[600px]">
         <Avatar className="w-12 h-12">
           <AvatarImage src={userAvatarUrl} alt={userName} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div className="bg-blue text-white px-4 py-2 rounded-full">
-          <h1 className="text-lg">{userName}</h1>
+        <div className="bg-blue text-white px-4 py-2 rounded-full w-full">
+          <h1 className="text-lg font-bold text-white bg-blue rounded-full flex items-center justify-center min-w-[150px] w-full">
+            {userName}
+          </h1>
         </div>
       </div>
 
