@@ -1,46 +1,50 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import { faCrown } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faUser, faCirclePlus, faCrown } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+// import bgImage from "@/assets/images/bg-image.png";
 
 const Footer = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4">
-      <ul className="flex justify-around w-full">
-        <li className="flex flex-col items-center">
-          <Button variant="link">
+    <>
+    {/* <div style={{ backgroundImage: `url(${bgImage.src})` }} className="fixed -bottom-72 left-0 w-full h-full bg-contain -z-10 md:hidden" ></div> */}
+
+      <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4 z-10">
+
+        <ul className="flex justify-around w-full">
+          <li className="flex flex-col items-center">
             <Link href="/home">
-            <FontAwesomeIcon icon={faHouse} className="text-white text-3xl" />
+              <Button variant="link">
+                <FontAwesomeIcon icon={faHouse} className="text-white text-3xl" />
+              </Button>
             </Link>
-          </Button>
-        </li>
-        <li className="flex flex-col items-center">
-          <Button variant="link">
+          </li>
+          <li className="flex flex-col items-center">
             <Link href="/post">
-            <FontAwesomeIcon icon={faCirclePlus} className="text-white text-3xl"/>
+              <Button variant="link">
+                <FontAwesomeIcon icon={faCirclePlus} className="text-white text-3xl"/>
+              </Button>
             </Link>
-          </Button>
-        </li>
-        <li className="flex flex-col items-center">
-          <Button variant="link">
+          </li>
+          <li className="flex flex-col items-center">
             <Link href="/ranking">
-            <FontAwesomeIcon icon={faCrown} className="text-white text-3xl"/>
+              <Button variant="link">
+                <FontAwesomeIcon icon={faCrown} className="text-white text-3xl"/>
+              </Button>
             </Link>
-          </Button>
-        </li>
-        <li className="flex flex-col items-center">
-          <Button variant="link">
+          </li>
+          <li className="flex flex-col items-center">
             <Link href="/my-photos">
-              <FontAwesomeIcon icon={faUser} className="text-white text-3xl"/>
+              <Button variant="link">
+                <FontAwesomeIcon icon={faUser} className="text-white text-3xl"/>
+              </Button>
             </Link>
-          </Button>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 };
 
