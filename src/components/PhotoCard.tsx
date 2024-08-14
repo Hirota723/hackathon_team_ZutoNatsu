@@ -6,7 +6,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { usePhotoLikes } from "@/hooks/usePhotoLikes";
@@ -21,6 +20,18 @@ interface Props {
   rank?: number | null;
   onDelete?: (photoId: number) => void;
 }
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+
+  // 年、月、日の取得
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // 月は0始まりなので+1
+  const day = String(date.getDate()).padStart(2, "0"); // 日を2桁に
+
+  // YYYY/MM/DD形式で返す
+  return `${year}月${month}日${day}`;
+};
 
 const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +48,7 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
     <>
       <Card
         key={photo.id}
-        className="w-full max-w-[600px] my-2 bg-transparent border-none shadow-none"
+        className="w-full max-w-[600px] my-2 px-4 bg-transparent border-none shadow-none"
       >
         <CardHeader className="p-1">
           {!onDelete && rank == null && (
@@ -83,11 +94,11 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
                   key={index}
                   className={
                     index === 0
-                      ? "text-3xl font-bold"
+                      ? "text-lg font-bold"
                       : index === 1
-                      ? "text-3xl font-bold mt-10"
+                      ? "text-lg font-bold mt-10"
                       : index === 2
-                      ? "text-3xl font-bold mt-20"
+                      ? "text-lg font-bold mt-20"
                       : ""
                   }
                 >
@@ -104,7 +115,7 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
               <MapPinIcon className="w-6 h-6 mr-1 text-blue" />
               {photo.location}
             </div>
-            <div className="text-center">{photo.created_at}</div>
+            <div className="text-center">{formatDate(photo.created_at)}</div>
           </div>
           {/* いいね */}
           <div className="flex items-center gap-2">
