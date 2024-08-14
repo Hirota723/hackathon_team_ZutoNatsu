@@ -51,16 +51,14 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
             </div>
           )}
         </CardHeader>
+        <div className="flex items-center">
+          {onDelete && (
+            <div className="ml-auto">
+              <PhotoDropdownMenu photo={photo} onDelete={onDelete} />
+            </div>
+          )}
+        </div>
         <CardContent className="p-1 flex gap-1">
-          {/* <div className="flex items-center">
-              <CardTitle>{photo.title}</CardTitle>
-              {onDelete && (
-                <div className="ml-auto">
-                  <PhotoDropdownMenu photo={photo} onDelete={onDelete} />
-                </div>
-              )}
-            </div> */}
-
           {/* 写真 */}
           <Image
             src={
@@ -76,7 +74,12 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
           />
           {/* タイトル */}
           <div className="w-1/4 flex bg-[#E3D8C6] justify-center items-center rounded-lg">
-            <CardTitle className="vertical-text" style = {{whiteSpace: "pre-wrap"}}>{photo.title}</CardTitle>
+            <CardTitle
+              className="vertical-text"
+              style={{ whiteSpace: "pre-wrap" }}
+            >
+              {photo.title}
+            </CardTitle>
           </div>
         </CardContent>
         <CardFooter className="p-1 gap-3">
