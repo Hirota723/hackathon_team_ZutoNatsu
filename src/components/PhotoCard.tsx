@@ -32,75 +32,73 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
 
   return (
     <>
-      <Card key={photo.id} className="w-[350px]">
-        <CardHeader>
+      <Card key={photo.id} className="w-[400px] my-2 bg-transparent border-none shadow-none">
+        <CardHeader className="p-1">
           {rank && <span className="font-bold text-xl">{rank}</span>}
 
           {!onDelete && (
-            <div className="flex items-center gap-4">
+            <div className="w-3/4 flex items-center gap-2 p-1 bg-[#F4EDE3] rounded-full">
               {/* 画像 */}
               <Avatar>
                 <AvatarImage src={photo.user_avatar} alt={photo.user_name} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               {/* ユーザー名 */}
-              <CardDescription>{photo.user_name}</CardDescription>
+              <CardDescription className="text-lg font-bold text-white bg-blue rounded-full flex items-center justify-center min-w-[150px] w-full h-8">
+                {photo.user_name}
+              </CardDescription>
             </div>
           )}
-
-          <div className="flex items-center">
-            <CardTitle>{photo.title}</CardTitle>
-            {onDelete && (
-              <div className="ml-auto">
-                <PhotoDropdownMenu photo={photo} onDelete={onDelete} />
-              </div>
-            )}
-          </div>
         </CardHeader>
-
-        <CardContent>
-          <div className="flex items-center">
-            {/* 写真 */}
-            <Image
-              src={
-                photo.photo_url ||
-                "https://cdn2.aprico-media.com/production/imgs/images/000/047/172/original.jpg?1580205234"
-              }
-              alt={photo.title}
-              width={350}
-              height={350}
-              onClick={handleImageClick}
-              className="cursor-pointer"
-              priority
-            />
-
-            {/* タイトル */}
-            <div className="flex items-center">
+        <CardContent className="p-1 flex gap-1">
+          {/* <div className="flex items-center">
               <CardTitle>{photo.title}</CardTitle>
-            </div>
-          </div>
+              {onDelete && (
+                <div className="ml-auto">
+                  <PhotoDropdownMenu photo={photo} onDelete={onDelete} />
+                </div>
+              )}
+            </div> */}
 
+          {/* 写真 */}
+          <Image
+            src={
+              photo.photo_url ||
+              "https://cdn2.aprico-media.com/production/imgs/images/000/047/172/original.jpg?1580205234"
+            }
+            alt={photo.title}
+            width={350}
+            height={350}
+            onClick={handleImageClick}
+            className="cursor-pointer w-3/4"
+            priority
+          />
+          {/* タイトル */}
+          <div className="w-1/4 flex bg-[#E3D8C6] justify-center items-center rounded-lg">
+            <CardTitle className="vertical-text">{photo.title}</CardTitle>
+            <CardTitle className="vertical-text">{photo.title}</CardTitle>
+            <CardTitle className="vertical-text">{photo.title}</CardTitle>
+          </div>
+        </CardContent>
+        <CardFooter className="p-1 gap-3">
           {/* 場所 */}
-          <div className="flex bg-[#E3D8C6]">
-            <MapPinIcon className="w-6 h-6 mr-1 text-blue-500" />
-            {photo.location}
+          <div className="w-3/4 bg-[#E3D8C6] rounded-full p-1 flex flex-col items-center">
+            <div className="flex items-center justify-center">
+              <MapPinIcon className="w-6 h-6 mr-1 text-blue" />
+              {photo.location}
+            </div>
+            <div className="text-center">{photo.created_at}</div>
           </div>
-
           {/* いいね */}
-          <div className="flex pl-64 gap-2">
+          <div className="flex items-center gap-2">
             <HeartIcon
-              className={`w-6 h-6 ${
+              className={`w-10 h-10 ${
                 isLiked ? "text-red-500 " : "text-gray-400"
               }`}
               onClick={handleLike}
             />
             <p>{likes}</p>
           </div>
-        </CardContent>
-
-        {/* 日付 */}
-        <CardFooter className="flex justify-between">
-          <div className="text-gray-400">{photo.created_at}</div>
         </CardFooter>
       </Card>
 
@@ -113,6 +111,12 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
         }
         imageAlt={photo.title}
       />
+      <style jsx global>{`
+        .vertical-text {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+      `}</style>
     </>
   );
 };
