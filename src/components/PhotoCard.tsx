@@ -30,6 +30,9 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
     setIsModalOpen(true);
   };
 
+  // タイトルを改行で分割
+  const titleParts = photo.title.split("\n");
+
   return (
     <>
       <Card
@@ -74,12 +77,24 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
           />
           {/* タイトル */}
           <div className="w-1/4 flex bg-[#E3D8C6] justify-center items-center rounded-lg">
-            <CardTitle
-              className="vertical-text"
-              style={{ whiteSpace: "pre-wrap" }}
-            >
-              {photo.title}
-            </CardTitle>
+            <div className="vertical-text">
+              {titleParts.map((part, index) => (
+                <div
+                  key={index}
+                  className={
+                    index === 0
+                      ? "text-3xl font-bold"
+                      : index === 1
+                      ? "text-3xl font-bold mt-10"
+                      : index === 2
+                      ? "text-3xl font-bold mt-20"
+                      : ""
+                  }
+                >
+                  {part}
+                </div>
+              ))}
+            </div>
           </div>
         </CardContent>
         <CardFooter className="p-1 gap-3">
