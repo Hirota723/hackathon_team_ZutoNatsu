@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { getUser } from "@/api/getUser";
 import { getUserId } from "@/api/getUserId";
 import { addPhoto } from "./api/addPhoto";
+import { getPhotoUrl, uploadPhoto } from "./api/photoStorage";
+import { fetchAddress, formatAddress } from "./api/LocationService";
 import Photos from "@/entities/photos";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -13,7 +15,6 @@ import PhotoPostPresenter from "./PhotoPostPresenter";
 import { useToast } from "@/components/ui/use-toast";
 import { v4 as uuidv4 } from "uuid";
 import { formSchema } from "@/utils/formSchema";
-import { getPhotoUrl, uploadPhoto } from "./api/photoStorage";
 
 const PhotoPostContainer = () => {
   const router = useRouter();
@@ -45,6 +46,37 @@ const PhotoPostContainer = () => {
       location: "",
     },
   });
+
+  const handleGetCurrentLocation = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          // 逆ジオコーディングで住所を取得
+          const address = await fetchAddress(latitude, longitude);
+
+          if (address) {
+            // フィールドに住所をセット
+            const formattedAddress = formatAddress(address);
+            form.setValue("location", formattedAddress);
+          }
+        },
+        (error) => {
+          console.error("位置情報の取得に失敗しました:", error);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      console.error("このブラウザでは位置情報が取得できません。");
+    }
+  };
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     const { title5, title7, title5_2, location, image } = value;
@@ -90,7 +122,13 @@ const PhotoPostContainer = () => {
     }
   };
 
-  return <PhotoPostPresenter form={form} onSubmit={onSubmit} />;
+  return (
+    <PhotoPostPresenter
+      form={form}
+      onSubmit={onSubmit}
+      handleGetCurrentLocation={handleGetCurrentLocation}
+    />
+  );
 };
 
 export default PhotoPostContainer;

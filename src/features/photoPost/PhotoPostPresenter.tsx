@@ -13,33 +13,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import { Check, ChevronsUpDown } from "lucide-react";
-
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useState } from "react";
-import { LOCATIONS } from "@/constants/locations";
 
 interface PhotoPostContainerProps {
   form: any;
   onSubmit: any;
+  handleGetCurrentLocation: any;
 }
 
-const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+const PhotoPostPresenter = ({
+  form,
+  onSubmit,
+  handleGetCurrentLocation,
+}: PhotoPostContainerProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // 追加: 投稿ボタンが押されたかどうかの状態を管理
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -179,63 +165,25 @@ const PhotoPostPresenter = ({ form, onSubmit }: PhotoPostContainerProps) => {
             control={form.control}
             name="location"
             render={({ field }) => (
-              <FormItem className="flex flex-col">
+              <FormItem>
                 <div className="bg-[#E3D8C6] p-2 rounded-lg">
                   <div className="flex">
-                    <FormLabel className="text-lg font-bold">場所</FormLabel>
+                    <FormLabel className="text-base font-semibold">
+                      場所
+                    </FormLabel>
                     <FormMessage className="ml-auto" />
                   </div>
-                  <Popover open={open} onOpenChange={setOpen}>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        aria-expanded={open}
-                        className="w-full justify-between text-lg font-medium"
-                      >
-                        {value
-                          ? LOCATIONS.find(
-                              (location) => location.value === value
-                            )?.label
-                          : "場所を選択..."}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-[200px] p-0">
-                      <Command>
-                        <CommandInput placeholder="場所を選択..." />
-                        <CommandList>
-                          <CommandEmpty>場所が見つかりません。</CommandEmpty>
-                          <CommandGroup>
-                            {LOCATIONS.map((location) => (
-                              <CommandItem
-                                key={location.value}
-                                value={location.value}
-                                onSelect={(currentValue) => {
-                                  setValue(
-                                    currentValue === value ? "" : currentValue
-                                  );
-                                  field.onChange(
-                                    currentValue === value ? "" : currentValue
-                                  );
-                                  setOpen(false);
-                                }}
-                              >
-                                <Check
-                                  className={`mr-2 h-4 w-4 ${
-                                    value === location.value
-                                      ? "opacity-100"
-                                      : "opacity-0"
-                                  }`}
-                                />
-                                {location.label}
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
+                  <Button onClick={handleGetCurrentLocation}>
+                    現在値を取得
+                  </Button>
+                  <FormControl>
+                    <Input
+                      placeholder="場所を入力してください"
+                      {...field}
+                      value={form.watch("location")}
+                      className="text-lg font-medium"
+                    />
+                  </FormControl>
                 </div>
               </FormItem>
             )}
