@@ -56,9 +56,13 @@ const PhotoCardAddRank: React.FC<Props> = ({
   return (
     <>
       {rank !== null && rank > 3 ? (
-        <Accordion type="single" collapsible className="w-full max-w-[600px] my-2">
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full max-w-[600px] my-2"
+        >
           <AccordionItem value="item-1">
-            <div className=" flex items-center gap-2 p-1 bg-[#F4EDE3] rounded-full">
+            <AccordionTrigger className=" flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full p-2">
               <div className="flex">
                 <p className="text-lg font-bold">{rank}</p>
                 <p className="text-lg font-bold">位</p>
@@ -72,8 +76,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
               <CardDescription className="text-lg font-bold text-white bg-blue rounded-full flex items-center justify-center min-w-[100px] w-full h-8">
                 {photo.user_name}
               </CardDescription>
-              <AccordionTrigger className="text-lg font-bold"></AccordionTrigger>
-            </div>
+            </AccordionTrigger>
             <AccordionContent>
               <PhotoCard key={photo.id} photo={photo} rank={photo.rank} />
             </AccordionContent>
@@ -81,7 +84,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
         </Accordion>
       ) : (
         <div className="my-2 w-full max-w-[600px]">
-          <div className="flex items-center gap-2 p-1 bg-[#F4EDE3] rounded-full">
+          <div className="flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full p-2">
             <div className="flex">
               <p className="text-lg font-bold" style={getRankStyle(rank)}>
                 {rank}
