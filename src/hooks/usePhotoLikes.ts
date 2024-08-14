@@ -4,16 +4,24 @@ import { getLikeStatus } from "@/api/getLikeStatus";
 import { getLikeCount } from "@/api/getLikeCount";
 import { addLike, deleteLike } from "@/api/updateLikes";
 import Photos from "@/entities/photos";
+import { useRouter } from "next/navigation";
 
 export const usePhotoLikes = (photo: Photos) => {
+  const router = useRouter();
   const [likes, setLikes] = useState(photo.likes);
   const [isLiked, setIsLiked] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserId = async () => {
-      const id = await getUserId();
-      setUserId(id);
+      try {
+        const id = await getUserId();
+        if (id) {
+          setUserId(id);
+        }
+      } catch (error) {
+        setUserId(null);
+      }
     };
 
     fetchUserId();
@@ -21,7 +29,9 @@ export const usePhotoLikes = (photo: Photos) => {
 
   useEffect(() => {
     const fetchLikeStatus = async () => {
-      if (!userId) return;
+      if (!userId) {
+        return;
+      }
 
       const isLiked = await getLikeStatus(userId, photo.id);
       setIsLiked(isLiked);
@@ -40,7 +50,10 @@ export const usePhotoLikes = (photo: Photos) => {
   }, [photo.id]);
 
   const handleLike = async () => {
-    if (!userId) return;
+    if (!userId) {
+      router.push("/login");
+      return;
+    }
 
     try {
       if (isLiked) {
