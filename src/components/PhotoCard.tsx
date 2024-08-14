@@ -30,9 +30,24 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
     setIsModalOpen(true);
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}年${month}月${day}日`;
+  };
+
+  // フォーマットされた日付
+  const formattedDate = formatDate(photo.created_at);
+
   return (
     <>
-      <Card key={photo.id} className="w-[400px] my-2 bg-transparent border-none shadow-none">
+      <Card
+        key={photo.id}
+        className="w-[400px] my-2 bg-transparent border-none shadow-none"
+      >
         <CardHeader className="p-1">
           {rank && <span className="font-bold text-xl">{rank}</span>}
 
@@ -87,7 +102,7 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
               <MapPinIcon className="w-6 h-6 mr-1 text-blue" />
               {photo.location}
             </div>
-            <div className="text-center">{photo.created_at}</div>
+            <div className="text-center">{formattedDate}</div>{" "}
           </div>
           {/* いいね */}
           <div className="flex items-center gap-2">
