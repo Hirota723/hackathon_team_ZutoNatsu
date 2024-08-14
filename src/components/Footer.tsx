@@ -9,7 +9,7 @@ import bgImage from "@/assets/images/bg-image.png";
 const Footer = () => {
   return (
     <>
-      <div style={{ backgroundImage: `url(${bgImage.src})` }} className="w-[100%] h-60 bottom-[73px] fixed  left-0 w-full h-full bg-contain -z-10 md:hidden hogehoge" ></div>
+      <div style={{ backgroundImage: `url(${bgImage.src})` }} className="w-full h-60 bottom-[73px] fixed  left-0 bg-contain -z-10 md:hidden" ></div>
 
       <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4 z-10">
 
