@@ -47,7 +47,7 @@ const PhotoPostPresenter = ({
     <div className="flex flex-col items-center pb-20">
       <Header />
 
-      <p className="text-lg font-bold p-2">写真の投稿</p>
+      <p className="text-lg font-bold p-2 mt-20">写真の投稿</p>
 
       <Form {...form}>
         <form
