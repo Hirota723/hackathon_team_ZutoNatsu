@@ -20,6 +20,7 @@ const PhotoPostContainer = () => {
   const router = useRouter();
   const [userName, setUserName] = useState<string>("");
   const [userAvatarUrl, setUserAvatarUrl] = useState<string>("");
+  const [isLoading, setIsLoadingLocation] = useState<Boolean>(false);
 
   const { toast } = useToast();
 
@@ -47,48 +48,63 @@ const PhotoPostContainer = () => {
     },
   });
 
-  const handleGetCurrentLocation = (e: React.MouseEvent) => {
+  const startLocationFetch = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
 
-          // 逆ジオコーディングで住所を取得
-          const address = await fetchAddress(latitude, longitude);
+    // ローディングを開始
+    setIsLoadingLocation(true);
 
-          if (address) {
-            // フィールドに住所をセット
-            const formattedAddress = formatAddress(address);
-            form.setValue("location", formattedAddress);
-          }
-        },
-        (error) => {
-          console.error("位置情報の取得に失敗しました:", error);
+    // 位置情報の取得を試みる
+    handleGetCurrentLocation()
+      .catch((error) => {
+        console.error("位置情報の取得に失敗しました:", error);
 
-          toast({
-            title: "エラー",
-            description:
-              "位置情報の取得に失敗しました。位置情報の利用を許可してください。",
-            variant: "destructive",
-          });
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0,
-        }
-      );
-    } else {
-      console.error("このブラウザでは位置情報が取得できません。");
-
-      toast({
-        title: "エラー",
-        description: "このブラウザでは位置情報が取得できません。",
-        variant: "destructive",
+        // エラーメッセージを表示
+        toast({
+          title: "エラー",
+          description:
+            "位置情報の取得に失敗しました。位置情報の利用を許可してください。",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        // ローディングを終了
+        setIsLoadingLocation(false);
       });
-    }
+  };
+
+  const handleGetCurrentLocation = async () => {
+    return new Promise<void>((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // 逆ジオコーディングで住所を取得
+            const address = await fetchAddress(latitude, longitude);
+
+            if (address) {
+              // フィールドに住所をセット
+              const formattedAddress = formatAddress(address);
+              form.setValue("location", formattedAddress);
+            }
+
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0,
+          }
+        );
+      } else {
+        reject(new Error("このブラウザでは位置情報が取得できません。"));
+      }
+    });
   };
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
@@ -139,7 +155,8 @@ const PhotoPostContainer = () => {
     <PhotoPostPresenter
       form={form}
       onSubmit={onSubmit}
-      handleGetCurrentLocation={handleGetCurrentLocation}
+      startLocationFetch={startLocationFetch}
+      isLoading={isLoading}
     />
   );
 };
