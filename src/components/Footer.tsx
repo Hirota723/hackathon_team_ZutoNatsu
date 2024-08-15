@@ -22,7 +22,10 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${bgImage.src})` }} className="w-full h-60 bottom-[73px] fixed left-0 bg-contain -z-10"></div>
+      <div
+        style={{ backgroundImage: `url(${bgImage.src})` }}
+        className="w-full h-60 bottom-[73px] fixed left-0 bg-contain -z-10 bg-repeat-x bg-cotain animate-scroll-bg"
+      ></div>
 
       <div className="fixed bottom-0 left-0 right-0 bg-blue flex justify-around items-center py-4 z-10">
         <ul className="flex justify-around w-full">
