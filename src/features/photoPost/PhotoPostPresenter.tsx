@@ -18,13 +18,15 @@ import { useState } from "react";
 interface PhotoPostContainerProps {
   form: any;
   onSubmit: any;
-  handleGetCurrentLocation: any;
+  startLocationFetch: any;
+  isLoading: Boolean;
 }
 
 const PhotoPostPresenter = ({
   form,
   onSubmit,
-  handleGetCurrentLocation,
+  startLocationFetch,
+  isLoading,
 }: PhotoPostContainerProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // 追加: 投稿ボタンが押されたかどうかの状態を管理
 
@@ -173,9 +175,14 @@ const PhotoPostPresenter = ({
                     </FormLabel>
                     <FormMessage className="ml-auto" />
                   </div>
-                  <Button onClick={handleGetCurrentLocation}>
-                    現在値を取得
-                  </Button>
+                  <div className="w-1/4 bg-blue my-2 bg-blue rounded-lg flex flex-col items-center">
+                    <Button
+                      onClick={startLocationFetch}
+                      className="bg-blue hover:bg-blue"
+                    >
+                      {isLoading ? <LoadSpinner /> : "現在地を取得"}
+                    </Button>
+                  </div>
                   <FormControl>
                     <Input
                       placeholder="場所を入力してください"
@@ -193,7 +200,7 @@ const PhotoPostPresenter = ({
             <button
               type="submit"
               className={`w-4/5 h-12 text-lg text-white flex justify-center items-center rounded-full ${
-                isSubmitting ? "bg-red-700" : "bg-red-500"
+                isSubmitting ? "bg-red" : "bg-red"
               }`}
               disabled={isSubmitting} // ボタンの無効化
             >
