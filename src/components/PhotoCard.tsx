@@ -110,7 +110,7 @@ const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
         </CardContent>
         <CardFooter className="p-1 gap-3">
           {/* 場所 */}
-          <div className="w-3/4 bg-[#E3D8C6] rounded-full p-1 flex flex-col items-center">
+          <div className="w-3/4 bg-[#E3D8C6] rounded-full p-1 flex flex-col items-center px-4">
             <div className="flex items-center justify-center">
               <MapPinIcon className="w-6 h-6 mr-1 text-blue" />
               {photo.location}
