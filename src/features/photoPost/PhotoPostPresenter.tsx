@@ -52,7 +52,7 @@ const PhotoPostPresenter = ({
       <Form {...form}>
         <form
           onSubmit={handleSubmit} // 修正: handleSubmitを使用
-          className="space-y-8  w-full max-w-[600px]"
+          className="space-y-8  w-full max-w-[600px] p-4"
         >
           <FormField
             control={form.control}
@@ -175,7 +175,7 @@ const PhotoPostPresenter = ({
                     </FormLabel>
                     <FormMessage className="ml-auto" />
                   </div>
-                  <div className="w-1/4 bg-blue my-2 bg-blue rounded-lg flex flex-col items-center">
+                  <div className="w-2/4 bg-blue my-2 bg-blue rounded-lg flex flex-col items-center">
                     <Button
                       onClick={startLocationFetch}
                       className="bg-blue hover:bg-blue"
