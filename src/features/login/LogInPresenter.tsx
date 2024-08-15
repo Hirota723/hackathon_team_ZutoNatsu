@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Auth } from "@supabase/auth-ui-react";
 import { supabase } from "@/utils/supabaseClient";
 import { customLocalization } from "@/constants/customLocalization";
@@ -29,13 +31,23 @@ const LogInPresenter = () => {
               className: {
                 container: "space-y-4",
                 button:
-                  "w-full py-2 px-4 bg-[#CF5444] text-white font-semibold rounded-lg",
+                  "w-full py-2 px-4 bg-red rounded-full text-white font-semibold rounded-lg",
                 input:
                   "w-full py-2 px-4 bg-[#FFFFFF] border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500",
                 label: "block text-sm font-medium text-gray-700",
               },
             }}
           />
+          <div>
+            <Link href="/home">
+              <Button
+                variant="link"
+                className="w-full bg-blue rounded-full mt-10 text-white"
+              >
+                ゲストアカウントで続行
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
