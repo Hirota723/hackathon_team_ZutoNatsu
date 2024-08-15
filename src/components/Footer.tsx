@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from 'next/navigation'; // appディレクトリではこちらを使用
 import { Button } from "./ui/button";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +8,6 @@ import bgImage from "@/assets/images/bg-image.png";
 
 const Footer: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     // 現在のルートを設定する
