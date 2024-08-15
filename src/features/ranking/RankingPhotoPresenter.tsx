@@ -13,13 +13,11 @@ const RankingPhotoPresenter: React.FC<RankingPhotoPresenterProps> = ({
   return (
     <div className="flex flex-col items-center pb-20">
       <Header />
-
-      <h1 className="text-lg font-bold p-2 mt-20">ランキング</h1>
-
-      {ranking.map((photo) => (
-        <PhotoCardAddRank key={photo.id} photo={photo} rank={photo.rank} />
-      ))}
-
+      <div className="mt-20">
+        {ranking.map((photo) => (
+          <PhotoCardAddRank key={photo.id} photo={photo} rank={photo.rank} />
+        ))}
+      </div>
       <Footer />
     </div>
   );

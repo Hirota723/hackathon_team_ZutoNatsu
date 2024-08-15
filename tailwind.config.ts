@@ -1,10 +1,11 @@
 import type { Config } from "tailwindcss";
+import textShadowPlugin from "tailwindcss-textshadow";
 
 const config = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
@@ -77,20 +78,19 @@ const config = {
           to: { height: "0" },
         },
         scrollBackground: {
-          '0%': { opacity: '0', backgroundPosition: '0 0' },
-          '50%': { opacity: '1', backgroundPosition: '50% 0' },
-          '100%': { opacity: '0', backgroundPosition: '100% 0' }
+          "0%": { opacity: "0", backgroundPosition: "0 0" },
+          "50%": { opacity: "1", backgroundPosition: "50% 0" },
+          "100%": { opacity: "0", backgroundPosition: "100% 0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "scroll-bg": "scrollBackground 7s linear infinite"
-        
+        "scroll-bg": "scrollBackground 7s linear infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), textShadowPlugin],
 } satisfies Config;
 
 export default config;
