@@ -76,10 +76,19 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        scrollBackground: {
+          // '0%, 100%': { backgroundPosition: '0 0'},
+          // '100%': { backgroundPosition: '100% 0' },
+          '0%': { opacity: '0', backgroundPosition: '0 0' },
+          '50%': { opacity: '1', backgroundPosition: '50% 0' },
+          '100%': { opacity: '0', backgroundPosition: '100% 0' }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        // 'scroll-bg': 'scrollBackground 10s linear infinite',
+        "scroll-bg": "scrollBackground 10s linear infinite"
       },
     },
   },
