@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import UserPhotosPresenter from "./UserPhotosPresenter";
 import { useToast } from "@/components/ui/use-toast";
-import Photos from "@/entities/photos";
+import { useDisableScroll } from "@/hooks/useDisableScroll";
+import { getUser } from "@/api/getUser";
 import { getUserId } from "@/api/getUserId";
 import { getUserPhotos } from "./api/getUserPhotos";
 import { deletePhoto } from "./api/deletePhoto";
-import { useRouter } from "next/navigation";
-import { getUser } from "@/api/getUser";
+import Photos from "@/entities/photos";
 
 const UserPhotosContainer = () => {
   const router = useRouter();
@@ -17,6 +18,8 @@ const UserPhotosContainer = () => {
   const [photos, setPhotos] = useState<Photos[]>([]);
 
   const { toast } = useToast();
+
+  useDisableScroll();
 
   useEffect(() => {
     const fetchUser = async () => {

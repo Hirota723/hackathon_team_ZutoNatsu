@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import PhotoPostPresenter from "./PhotoPostPresenter";
+import { useDisableScroll } from "@/hooks/useDisableScroll";
 import { getUser } from "@/api/getUser";
 import { getUserId } from "@/api/getUserId";
 import { addPhoto } from "./api/addPhoto";
@@ -9,9 +12,7 @@ import { getPhotoUrl, uploadPhoto } from "./api/photoStorage";
 import { fetchAddress, formatAddress } from "./api/LocationService";
 import Photos from "@/entities/photos";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
-import PhotoPostPresenter from "./PhotoPostPresenter";
 import { useToast } from "@/components/ui/use-toast";
 import { v4 as uuidv4 } from "uuid";
 import { formSchema } from "@/utils/formSchema";
@@ -23,6 +24,8 @@ const PhotoPostContainer = () => {
   const [isLoading, setIsLoadingLocation] = useState<Boolean>(false);
 
   const { toast } = useToast();
+
+  useDisableScroll();
 
   useEffect(() => {
     const fetchUser = async () => {

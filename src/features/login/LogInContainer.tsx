@@ -3,10 +3,13 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LogInPresenter from "./LogInPresenter";
+import { useDisableScroll } from "@/hooks/useDisableScroll";
 import { getUser } from "@/api/getUser";
 
 const LogInContainer = () => {
   const router = useRouter();
+
+  useDisableScroll();
 
   useEffect(() => {
     const getAuth = async () => {

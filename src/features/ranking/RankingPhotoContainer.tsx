@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react";
 import RankingPhotoPresenter from "./RankingPhotoPresenter";
-import Photos from "@/entities/photos";
+import { useDisableScroll } from "@/hooks/useDisableScroll";
 import { rankingData } from "@/utils/rankingData";
+import Photos from "@/entities/photos";
 
 const RankingPhotoContainer = () => {
   const [ranking, setRanking] = useState<Photos[]>([]);
+
+  useDisableScroll();
 
   useEffect(() => {
     const fetchData = async () => {
