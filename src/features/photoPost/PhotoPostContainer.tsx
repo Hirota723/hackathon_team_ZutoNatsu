@@ -66,6 +66,13 @@ const PhotoPostContainer = () => {
         },
         (error) => {
           console.error("位置情報の取得に失敗しました:", error);
+
+          toast({
+            title: "エラー",
+            description:
+              "位置情報の取得に失敗しました。位置情報の利用を許可してください。",
+            variant: "destructive",
+          });
         },
         {
           enableHighAccuracy: true,
@@ -75,6 +82,12 @@ const PhotoPostContainer = () => {
       );
     } else {
       console.error("このブラウザでは位置情報が取得できません。");
+
+      toast({
+        title: "エラー",
+        description: "このブラウザでは位置情報が取得できません。",
+        variant: "destructive",
+      });
     }
   };
 
