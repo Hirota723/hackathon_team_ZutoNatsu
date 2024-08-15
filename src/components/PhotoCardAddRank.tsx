@@ -42,11 +42,11 @@ const PhotoCardAddRank: React.FC<Props> = ({
     if (rank === null) return {};
 
     if (rank === 1) {
-      return { color: "gold", fontSize: "2rem" };
+      return { color: "gold", fontSize: "1.75rem" };
     } else if (rank === 2) {
-      return { color: "silver", fontSize: "1.75rem" };
+      return { color: "silver", fontSize: "1.5rem" };
     } else if (rank === 3) {
-      return { color: "brown", fontSize: "1.5rem" };
+      return { color: "brown", fontSize: "1.25rem" };
     } else if (rank > 3) {
       return { color: "gray", fontSize: "1.25rem" };
     }
@@ -62,7 +62,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
           className="w-full max-w-[600px] my-2"
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger className=" flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full mx-4">
+            <AccordionTrigger className=" flex items-center gap-2 py-1 bg-[#E3D8C6] rounded-full mx-4 px-3 border-none">
               <div className="flex">
                 <p className="text-lg font-bold">{rank}</p>
                 <p className="text-lg font-bold">位</p>
@@ -84,7 +84,7 @@ const PhotoCardAddRank: React.FC<Props> = ({
         </Accordion>
       ) : (
         <div className="my-2 w-full max-w-[600px]">
-          <div className="flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full mx-4">
+          <div className="flex items-center gap-2 py-1 px-3 bg-[#E3D8C6] rounded-full mx-4">
             <div className="flex">
               <p className="font-bold" style={getRankStyle(rank)}>
                 {rank}
