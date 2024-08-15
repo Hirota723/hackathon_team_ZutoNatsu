@@ -67,3 +67,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @media (min-width: 640px) {
+    .animate-scroll-bg {
+      animation: scrollBackground 20s linear infinite;
+    }
+  }
+  @media (min-width: 1024px) {
+    .animate-scroll-bg {
+      animation: scrollBackground 30s linear infinite;
+    }
+  }
+}
