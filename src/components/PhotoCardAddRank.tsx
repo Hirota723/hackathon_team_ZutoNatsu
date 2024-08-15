@@ -86,10 +86,10 @@ const PhotoCardAddRank: React.FC<Props> = ({
         <div className="my-2 w-full max-w-[600px]">
           <div className="flex items-center gap-2 p-1 bg-[#E3D8C6] rounded-full mx-4">
             <div className="flex">
-              <p className="text-lg font-bold" style={getRankStyle(rank)}>
+              <p className="font-bold" style={getRankStyle(rank)}>
                 {rank}
               </p>
-              <p className="text-lg font-bold" style={getRankStyle(rank)}>
+              <p className="font-bold" style={getRankStyle(rank)}>
                 位
               </p>
             </div>
