@@ -10,14 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardDescription } from "@/components/ui/card";
 
 interface Props {
   photo: Photos;
@@ -86,10 +79,10 @@ const PhotoCardAddRank: React.FC<Props> = ({
         <div className="my-2 w-full max-w-[600px]">
           <div className="flex items-center gap-2 py-1 px-3 bg-[#E3D8C6] rounded-full mx-4">
             <div className="flex">
-              <p className="font-bold" style={getRankStyle(rank)}>
+              <p className="font-bold text-shadow" style={getRankStyle(rank)}>
                 {rank}
               </p>
-              <p className="font-bold" style={getRankStyle(rank)}>
+              <p className="font-bold text-shadow" style={getRankStyle(rank)}>
                 位
               </p>
             </div>
