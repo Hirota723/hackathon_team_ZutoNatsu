@@ -11,13 +11,14 @@ const PhotoFeedPresenter: React.FC<Props> = ({ photos }) => {
   return (
     <div className="flex flex-col items-center pb-20">
       <Header />
-
-      {photos
-        .slice()
-        .reverse()
-        .map((photo) => (
-          <PhotoCard key={photo.id} photo={photo} />
-        ))}
+      <div className="mt-20">
+        {photos
+          .slice()
+          .reverse()
+          .map((photo) => (
+            <PhotoCard key={photo.id} photo={photo} />
+          ))}
+      </div>
 
       <Footer />
     </div>

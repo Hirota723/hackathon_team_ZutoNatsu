@@ -21,7 +21,7 @@ const UserPhotosPresenter: React.FC<UserPhotosPresenterProps> = ({
     <div className="flex flex-col items-center pb-20">
       <Header />
 
-      <div className="flex items-center space-x-4 p-4 w-full max-w-[600px]">
+      <div className="flex items-center space-x-4 p-4 w-full max-w-[600px] mt-20">
         <Avatar className="w-12 h-12">
           <AvatarImage src={userAvatarUrl} alt={userName} />
           <AvatarFallback>CN</AvatarFallback>
