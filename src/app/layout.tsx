@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kyoto Street Snap",
-  description: "Kyoto Street Snap - 京都のストリートスナップ写真を共有しよう",
+  title: "はーいっく",
+  description: "はーいっく - 俳句と写真であなたの想像力を刺激しよう!",
 };
 
 export default function RootLayout({
