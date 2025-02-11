@@ -1,7 +1,7 @@
 import PhotoFeedContainer from "@/features/photoFeed/PhotoFeedContainer";
 
-const LogInPage = () => {
+const HomePage = () => {
   return <PhotoFeedContainer />;
 };
 
-export default LogInPage;
+export default HomePage;
