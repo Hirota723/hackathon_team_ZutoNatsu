@@ -30,7 +30,7 @@ const formatDate = (dateString: string) => {
   const day = String(date.getDate()).padStart(2, "0"); // 日を2桁に
 
   // YYYY/MM/DD形式で返す
-  return `${year}月${month}日${day}`;
+  return `${year}年${month}月${day}日`;
 };
 
 const PhotoCard: React.FC<Props> = ({ photo, rank = null, onDelete }) => {
